@@ -1,6 +1,7 @@
 plugins {
     id 'groovy'
     id 'maven'
+    id 'maven-publish'
     id 'com.jfrog.bintray' version '1.0'
 }
 
