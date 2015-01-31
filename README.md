@@ -1,106 +1,70 @@
-Gradle Plugin Template
-======================
+# gradle-proguard-plugin
 
-This is a template project of Gradle plugin with blank implementation.
+The gradle plugin to add proguard snippets to your proguard setting file quickly.
 
-[![Build Status](https://travis-ci.org/int128/gradle-plugin-blank.png)](https://travis-ci.org/int128/gradle-plugin-blank)
+[![Build Status](https://travis-ci.org/hotchemi/gradle-proguard-plugin.svg)](https://travis-ci.org/hotchemi/gradle-proguard-plugin)
 
+> This plugin pulls the proguard snippets from the [krschultz/android-proguard-snippets](https://github.com/krschultz/android-proguard-snippets)
+> If you wanna add the snippets, PR to android-proguard-snippets!
 
-Features
---------
+## Download
 
-This contains following features:
+You can download from [Bintray](https://bintray.com/hotchemi/maven/gradle-proguard-plugin/view).
 
-  * Plugin generator
-  * Blank implementation of the plugin (see [HelloPlugin.groovy](src/main/groovy/com/example/HelloPlugin.groovy))
-  * Testing with Spock (see [HelloPluginSpec.groovy](src/test/groovy/com/example/HelloPluginSpec.groovy))
-  * Acceptance Test
-  * Continuous integration support on Travis CI
-  * Publishing the plugin on [Bintray](https://bintray.com) and [Gradle Plugins](http://plugins.gradle.org)
-  * Gradle Wrapper
-  * `.gitignore` for Gradle, IDEA and Eclipse
+> I'm currently submitting to jcenter. Wait a little!
 
+Add following the code to your root `build.gradle`.
 
-Getting Started
----------------
+```groovy
+apply plugin: 'add.proguard'
 
-Update plugin ID, group name and description in `gradle.properties`.
-See also [how to submit your plugin](http://plugins.gradle.org/submit).
-
-Then, run the generate task. See [plugin-generator.gradle](gradle/plugin-generator.gradle) for details.
-
-```
-./gradlew generatePlugin
-
-:generatePluginClass
-Generating plugin class: .../src/main/groovy/com/example/HelloPlugin.groovy
-:generatePluginMetadata
-Generating plugin metadata: .../src/main/resources/META-INF/gradle-plugins/com.example.hello.properties
-:generatePluginTestClass
-Generating plugin test: .../src/test/groovy/com/example/HelloPluginSpec.groovy
-:generatePlugin
-
-BUILD SUCCESSFUL
+buildscript {
+    repositories {
+        maven {
+            jcenter()
+            url "http://dl.bintray.com/hotchemi/maven"
+        }
+    }
+    dependencies {
+        classpath 'com.github.hotchemi:gradle-proguard-plugin:0.1.0'
+    }
+}
 ```
 
-All dependencies are downloaded by Gradle wrapper.
+## How to use
 
-### Develop the plugin
-
-Open the project with IDE like IntelliJ IDEA.
-Repeat following steps.
-
-1. Write a feature in `README.md`
-2. Write a test code in `src/test/groovy/*Spec.groovy`
-3. Write a product code in `src/main/groovy/*.groovy`
-
-### Acceptance test
-
-Install the artifact into the local repository and run the test task.
+Use the `addProguard` task as described below.
 
 ```sh
-./gradlew install
-./gradlew -p acceptance-test test
+./gradlew addProguard -Plib=butterknife
 ```
 
-### Publish the plugin
+The plugin add the proguard snippets to your `*.pro` file.
 
-Sign up Bintray and provide your user name and API key in `~/.gradle/gradle.properties` as follows:
+> You must prepare the one .pro file. If there are several files or nothing, the plugin shows the warning.
 
-```ini
-bintray.credential=user:apikey
-```
-
-Run the upload task with release version.
+And you can use the `aP` task, it is the shortcut of the `addProguard`.
 
 ```sh
-./gradlew -Pversion=0.1 bintrayUpload
+./gradlew aP -Plib=butterknife
 ```
 
-
-Working with Travis CI
-----------------------
-
-This project contains the continuous integration support and Travis CI will build the project on each push.
-
-### Publish the plugin on Git tag
-
-Add your user name and API key of Bintray in [.travis.yml](.travis.yml) as an encrypted variable.
+You can choose plural arguments.
 
 ```sh
-travis encrypt --add -- BINTRAY=user:apikey
+./gradlew aP -Plib="butterknife gson rx-java"
 ```
 
-Then, push the tag.
+If you already added the snippets of the library, the plugin stops task and shows the warning.
 
 ```sh
-git tag v0.1
-git push origin --tags
+proguard-rules.pro already contains library's snippet. Do you continue(y/n)?
 ```
 
+## Contribute
 
-Contributions
--------------
-
-This is an open source software licensed under the Apache License Version 2.0.
-Any issues or pull requests are welcome.
+1. Fork it
+2. Create your feature branch (`git checkout -b my-new-feature`)
+3. Commit your changes (`git commit -am 'Added some feature'`)
+4. Push to the branch (`git push origin my-new-feature`)
+5. Create new Pull Request
