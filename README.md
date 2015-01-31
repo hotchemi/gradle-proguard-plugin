@@ -1,10 +1,10 @@
 # gradle-proguard-plugin
 
-The gradle plugin to add proguard snippets to your proguard setting file quickly.
-
 [![Build Status](https://travis-ci.org/hotchemi/gradle-proguard-plugin.svg)](https://travis-ci.org/hotchemi/gradle-proguard-plugin)
 
-> This plugin pulls the proguard snippets from the [krschultz/android-proguard-snippets](https://github.com/krschultz/android-proguard-snippets)
+The gradle plugin to add proguard snippets to your proguard setting file quickly.
+
+> This plugin pulls the proguard snippets from the [krschultz/android-proguard-snippets](https://github.com/krschultz/android-proguard-snippets)<br/>
 > If you wanna add the snippets, PR to android-proguard-snippets!
 
 ## Download
