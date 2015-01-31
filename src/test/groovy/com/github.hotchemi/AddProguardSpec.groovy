@@ -1,9 +1,9 @@
-package com.example
+package com.github.hotchemi
 
 import org.gradle.testfixtures.ProjectBuilder
 import spock.lang.Specification
 
-class HelloPluginSpec extends Specification {
+class AddProguardSpec extends Specification {
 
     def "apply() should load the plugin"() {
         given:
@@ -11,11 +11,11 @@ class HelloPluginSpec extends Specification {
 
         when:
         project.with {
-            apply plugin: 'com.example.hello'
+            apply plugin: 'add.proguard'
         }
 
         then:
-        project.plugins.hasPlugin(HelloPlugin)
+        project.plugins.hasPlugin(AddProguardPlugin)
     }
 
 }
