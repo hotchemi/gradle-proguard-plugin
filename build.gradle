@@ -1,11 +1,8 @@
 plugins {
     id 'groovy'
-    id 'maven-publish'
-    id 'com.jfrog.bintray' version '1.0'
+    id 'maven'
+    id 'com.jfrog.bintray'
 }
-
-sourceCompatibility = JavaVersion.VERSION_1_6
-targetCompatibility = JavaVersion.VERSION_1_6
 
 repositories {
     jcenter()
@@ -36,41 +33,15 @@ publishing {
             from components.java
             artifact sourcesJar
             artifact javadocJar
-            // Uncomment if you want to upload the plugin to Maven Central
-            //pom.withXml {
-            //    asNode().children().last() + {
-            //        resolveStrategy = DELEGATE_FIRST
-            //        name project.name
-            //        description project.description
-            //        url project.property('pom.url')
-            //        scm {
-            //            url project.property('pom.scm.url')
-            //            connection project.property('pom.scm.connection')
-            //        }
-            //        licenses {
-            //            license {
-            //                name project.property('pom.license.name')
-            //                url project.property('pom.license.url')
-            //                distribution 'repo'
-            //            }
-            //        }
-            //        developers {
-            //            developer {
-            //                id project.property('pom.developer.id')
-            //                name project.property('pom.developer.name')
-            //            }
-            //        }
-            //    }
-            //}
         }
     }
 }
 
 bintray {
     final String credential = project.hasProperty('bintray.credential') ?
-                              project.property('bintray.credential') : System.getenv('BINTRAY') ?: ''
+            project.property('bintray.credential') : System.getenv('BINTRAY') ?: ''
     user = credential.split(':').first()
-    key  = credential.split(':').last()
+    key = credential.split(':').last()
     publications = ['maven']
     pkg {
         repo = 'maven'
@@ -84,11 +55,6 @@ bintray {
 tasks.bintrayUpload.doFirst {
     assert !project.version.contains('SNAPSHOT')
 }
-
-task install(dependsOn: 'publishMavenPublicationToMavenLocal') {
-}
-
-apply from: file('gradle/plugin-generator.gradle')
 
 task wrapper(type: Wrapper) {
     gradleVersion = '2.1'

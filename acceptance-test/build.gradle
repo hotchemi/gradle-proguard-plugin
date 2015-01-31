@@ -2,16 +2,17 @@ description 'Automated acceptance test'
 
 buildscript {
     repositories {
-        mavenLocal()
-        jcenter()
+        maven {
+            url "http://dl.bintray.com/hotchemi/maven"
+        }
     }
     dependencies {
-        classpath "com.example:gradle-plugin-blank:$version"
+        classpath "com.github.hotchemi:gradle-proguard-plugin:$version"
     }
 }
 
-apply plugin: 'com.example.hello'
+apply plugin: 'add.proguard'
 
 task test << {
-    assert plugins.hasPlugin('com.example.hello')
+    assert plugins.hasPlugin('add.proguard')
 }
