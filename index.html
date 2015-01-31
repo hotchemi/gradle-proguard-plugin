@@ -1,0 +1,113 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Gradle-proguard-plugin by hotchemi</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <script src="javascripts/scale.fix.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1 class="header">Gradle-proguard-plugin</h1>
+        <p class="header">The gradle plugin to add proguard snippets to your proguard setting file quickly.</p>
+
+        <ul>
+          <li class="download"><a class="buttons" href="https://github.com/hotchemi/gradle-proguard-plugin/zipball/master">Download ZIP</a></li>
+          <li class="download"><a class="buttons" href="https://github.com/hotchemi/gradle-proguard-plugin/tarball/master">Download TAR</a></li>
+          <li><a class="buttons github" href="https://github.com/hotchemi/gradle-proguard-plugin">View On GitHub</a></li>
+        </ul>
+
+        <p class="header">This project is maintained by <a class="header name" href="https://github.com/hotchemi">hotchemi</a></p>
+
+
+      </header>
+      <section>
+        <h1>
+<a id="gradle-proguard-plugin" class="anchor" href="#gradle-proguard-plugin" aria-hidden="true"><span class="octicon octicon-link"></span></a>gradle-proguard-plugin</h1>
+
+<p><a href="https://travis-ci.org/hotchemi/gradle-proguard-plugin"><img src="https://travis-ci.org/hotchemi/gradle-proguard-plugin.svg" alt="Build Status"></a></p>
+
+<p>The gradle plugin to add proguard snippets to your proguard setting file quickly.</p>
+
+<blockquote>
+<p>This plugin pulls the proguard information from the <a href="https://github.com/krschultz/android-proguard-snippets">krschultz/android-proguard-snippets</a>.<br>
+If you wanna add the snippets, PR to android-proguard-snippets!</p>
+</blockquote>
+
+<h2>
+<a id="download" class="anchor" href="#download" aria-hidden="true"><span class="octicon octicon-link"></span></a>Download</h2>
+
+<p>You can download from <a href="https://bintray.com/hotchemi/maven/gradle-proguard-plugin/view">Bintray</a>.</p>
+
+<blockquote>
+<p>I'm currently submitting to jcenter. Wait a little!</p>
+</blockquote>
+
+<p>Add following the code to your root <code>build.gradle</code>.</p>
+
+<div class="highlight highlight-groovy"><pre>apply <span class="pl-c1">plugin</span>: <span class="pl-s1"><span class="pl-pds">'</span>add.proguard<span class="pl-pds">'</span></span>
+
+buildscript {
+    repositories {
+        maven {
+            jcenter()
+            url <span class="pl-s1"><span class="pl-pds">"</span>http://dl.bintray.com/hotchemi/maven<span class="pl-pds">"</span></span>
+        }
+    }
+    dependencies {
+        classpath <span class="pl-s1"><span class="pl-pds">'</span>com.github.hotchemi:gradle-proguard-plugin:0.1.0<span class="pl-pds">'</span></span>
+    }
+}</pre></div>
+
+<h2>
+<a id="how-to-use" class="anchor" href="#how-to-use" aria-hidden="true"><span class="octicon octicon-link"></span></a>How to use</h2>
+
+<p>Use the <code>addProguard</code> task as described below.</p>
+
+<div class="highlight highlight-sh"><pre>./gradlew addProguard -Plib=butterknife</pre></div>
+
+<p>The plugin add the proguard snippets to your <code>*.pro</code> file.</p>
+
+<blockquote>
+<p>You must prepare the one .pro file. If there are several files or nothing, the plugin shows the warning.</p>
+</blockquote>
+
+<p>And you can use the <code>aP</code> task, it is the shortcut of the <code>addProguard</code>.</p>
+
+<div class="highlight highlight-sh"><pre>./gradlew aP -Plib=butterknife</pre></div>
+
+<p>You can choose plural arguments.</p>
+
+<div class="highlight highlight-sh"><pre>./gradlew aP -Plib=<span class="pl-s1"><span class="pl-pds">"</span>butterknife gson rx-java<span class="pl-pds">"</span></span></pre></div>
+
+<p>If you already added the snippets of the library, the plugin stops task and shows the warning.</p>
+
+<div class="highlight highlight-sh"><pre>proguard-rules.pro already contains library<span class="pl-s1"><span class="pl-pds">'</span>s snippet. Do you continue(y/n)?</span></pre></div>
+
+<h2>
+<a id="contribute" class="anchor" href="#contribute" aria-hidden="true"><span class="octicon octicon-link"></span></a>Contribute</h2>
+
+<ol>
+<li>Fork it</li>
+<li>Create your feature branch (<code>git checkout -b my-new-feature</code>)</li>
+<li>Commit your changes (<code>git commit -am 'Added some feature'</code>)</li>
+<li>Push to the branch (<code>git push origin my-new-feature</code>)</li>
+<li>Create new Pull Request</li>
+</ol>
+      </section>
+      <footer>
+        <p><small>Hosted on <a href="http://pages.github.com">GitHub Pages</a> using the Dinky theme</small></p>
+      </footer>
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+		
+  </body>
+</html>
