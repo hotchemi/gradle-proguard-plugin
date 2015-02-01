@@ -1,6 +1,7 @@
 # gradle-proguard-plugin
 
 [![Build Status](https://travis-ci.org/hotchemi/gradle-proguard-plugin.svg)](https://travis-ci.org/hotchemi/gradle-proguard-plugin)
+[![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-gradle--proguard--plugin-brightgreen.svg?style=flat)](https://android-arsenal.com/details/1/1467)
 
 The gradle plugin to add proguard snippets to your proguard setting file quickly.
 
