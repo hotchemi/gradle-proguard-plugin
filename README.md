@@ -9,9 +9,7 @@ The gradle plugin to add proguard snippets to your proguard setting file quickly
 
 ## Download
 
-You can download from [Bintray](https://bintray.com/hotchemi/maven/gradle-proguard-plugin/view).
-
-> I'm currently submitting to jcenter. Wait a little!
+You can download from jcenter.
 
 Add following the code to your root `build.gradle`.
 
@@ -20,10 +18,7 @@ apply plugin: 'add.proguard'
 
 buildscript {
     repositories {
-        maven {
-            jcenter()
-            url "http://dl.bintray.com/hotchemi/maven"
-        }
+        jcenter()
     }
     dependencies {
         classpath 'com.github.hotchemi:gradle-proguard-plugin:0.1.0'
@@ -49,7 +44,7 @@ And you can use the `aP` task, it is the shortcut of the `addProguard`.
 ./gradlew aP -Plib=butterknife
 ```
 
-You can choose plural arguments.
+You can put plural arguments.
 
 ```sh
 ./gradlew aP -Plib="butterknife gson rx-java"
