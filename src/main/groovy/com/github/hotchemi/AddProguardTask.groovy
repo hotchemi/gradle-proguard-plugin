@@ -16,14 +16,16 @@ class AddProguardTask extends DefaultTask {
             Utils.exit "arguments aren't set"
 
         List<String> proguardPaths = Utils.findProguardPaths()
-        if (proguardPaths.isEmpty() || proguardPaths.size() > 1)
-            Utils.exit ".pro is nothing or more than one"
+        if (proguardPaths.isEmpty())
+            Utils.exit "There were no .pro files found."
+        if (proguardPaths.size() > 1)
+            Utils.exit "More than one .pro file was found.  Please remove unused ones."
 
         arguments.each { library ->
             String proguardPath = proguardPaths.first()
             File proguard = new File(proguardPath)
             if (proguard.text.contains(library)) {
-                String response = System.console().readLine("> ${proguardPath} already contains ${library}'s snippet. Do you continue(y/n)?")
+                String response = System.console().readLine("> ${proguardPath} already contains ${library}'s snippet. Would you like to continue? (y/n) ")
                 if (response == "n") {
                     Utils.exit("Shutdown")
                 }
@@ -31,7 +33,7 @@ class AddProguardTask extends DefaultTask {
             proguard.withWriterAppend {
                 it << System.properties['line.separator'] + Utils.getHttpResponse(library)
             }
-            Log.println("Add ${library}'s snippet to ${proguardPath}.")
+            Log.println("Added ${library}'s snippet to ${proguardPath}.")
         }
     }
 
